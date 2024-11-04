@@ -49,10 +49,11 @@ def setup_logging(log_filename=None):
 
 def make_app():
     return tornado.web.Application([
-        (r"/api/register", handlers.RegisterHandler),
-        (r"/api/reset_password", handlers.ResetPasswordHandler),
-        (r"/api/search_books", handlers.SearchBooksHandler),
-        (r"/api/upload_file", handlers.UploadFileHandler),
+        (r"/api/user/login",    handlers.UserLogin),
+        (r"/api/user/register", handlers.UserRegister),
+        (r"/api/user/reset",    handlers.UserReset),
+        (r"/api/user/upload",   handlers.UserUpload),
+        (r"/api/search",        handlers.SearchBooksHandler),
     ])
 
 

@@ -28,8 +28,18 @@ class User:
     def save(self):
         self._table.insert_one(self.__dict__)
 
-    def generate_salt(self):
-        return ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+    def reset_password(self):
+        new_password = self.random_string(16)
+        self.salt = self.random_string(16)
+        new_hashed_password = self.hash_password(new_password, self.salt)
+
+        self.password = new_hashed_password
+        self.save()
+
+        return new_password
+
+    def random_string(self, len=16):
+        return ''.join(random.choices(string.ascii_letters + string.digits, k=len))
 
     def hash_password(self, password, salt):
         return hashlib.sha256((password + salt).encode()).hexdigest()

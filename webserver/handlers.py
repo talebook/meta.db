@@ -9,7 +9,7 @@ import string
 import services
 import models
 
-class RegisterHandler(tornado.web.RequestHandler):
+class UserRegister(tornado.web.RequestHandler):
     def post(self):
         email = self.get_argument("email")
         password = self.get_argument("password")
@@ -32,7 +32,7 @@ class RegisterHandler(tornado.web.RequestHandler):
         self.write({"message": "Registration successful"})
 
 
-class ResetPasswordHandler(tornado.web.RequestHandler):
+class UserReset(tornado.web.RequestHandler):
     def post(self):
         email = self.get_argument("email")
 
@@ -70,7 +70,7 @@ class SearchBooksHandler(tornado.web.RequestHandler):
         self.write({"books": books})
 
 
-class UploadFileHandler(tornado.web.RequestHandler):
+class UserUpload(tornado.web.RequestHandler):
     def post(self):
         user_id = self.get_argument("user_id")
         file = self.request.files["file"][0]
